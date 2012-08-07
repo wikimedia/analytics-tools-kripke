@@ -1,0 +1,4 @@
+include snippets/nolog_files;
+access_log logs/$domain.access.log;
+# access_log /var/log/nginx/$domain.access.log;
+# error_log  /var/log/nginx/$domain.error.log;

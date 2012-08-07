@@ -1,0 +1,8 @@
+if ( $_host = '' ) {
+    set $_host $host;
+}
+if ($_host ~* ^((?:([a-z0-9_.\-]+)\.)?(.+\..+))$) {
+    set $fqdn $1;
+    set $subdomain $2;
+    set $domain $3;
+}

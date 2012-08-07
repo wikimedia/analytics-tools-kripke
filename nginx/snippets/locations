@@ -1,0 +1,3 @@
+include snippets/locations_basic;
+include snippets/locations_php;
+

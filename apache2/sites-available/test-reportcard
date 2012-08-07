@@ -1,0 +1,37 @@
+<VirtualHost *:80>
+	ServerName test-reportcard.wmflabs.org
+	ServerAdmin root@wikimedia.org
+
+	DocumentRoot /srv/test-reportcard.wmflabs.org/kraken-ui/dist
+	<Directory /srv/test-reportcard.wmflabs.org/kraken-ui/dist>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+
+	ErrorLog /var/log/apache2/error.log
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog /var/log/apache2/access.log combined
+	ServerSignature On
+
+	ProxyRequests Off
+
+
+        <Proxy *>
+                Order allow,deny
+                Allow from all
+        </Proxy>
+
+	RewriteEngine On
+RewriteLog /var/log/apache2/rewrite.log
+RewriteLogLevel 9
+	RewriteCond /srv/test-reportcard.wmflabs.org/kraken-ui/dist/%{REQUEST_FILENAME} !-s
+	RewriteRule "^(.*)" "http://test-reportcard.wmflabs.org:8081$1" [P]
+	
+</VirtualHost>
+

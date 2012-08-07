@@ -1,0 +1,8 @@
+include snippets/domain_set;
+include snippets/log_domain;
+
+root /var/www/$domain/wordpress;
+index index.php index.html;
+
+include snippets/locations_basic;
+include snippets/wordpress;

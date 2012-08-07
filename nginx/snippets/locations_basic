@@ -1,0 +1,7 @@
+location @404 {
+    return 404;
+}
+
+location ~ /\.ht {
+    deny all;
+}

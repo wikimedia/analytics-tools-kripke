@@ -1,0 +1,15 @@
+server {
+    listen 80 default;
+    server_name analytics.wmflabs.org;
+    include snippets/domain_set;
+    
+    root /srv/analytics.wmflabs.org;
+    
+    # we put this here so forwarding servers see it before any redirect
+    include snippets/locations_basic;
+    error_page 404 = @404;
+    
+    include snippets/nolog_files;
+    access_log /var/log/nginx/analytics.wmflabs.org.access.log;
+    error_log  /var/log/nginx/analytics.wmflabs.org.error.log;
+}

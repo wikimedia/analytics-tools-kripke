@@ -1,0 +1,6 @@
+include snippets/domain_set;
+include snippets/log_domain;
+
+index index.html index.htm index.php;
+
+include snippets/locations_basic;

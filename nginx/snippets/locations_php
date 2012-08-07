@@ -1,0 +1,10 @@
+# passthrough to php fcgi
+# location ~* \.php$ {
+#     fastcgi_intercept_errors        on;
+#     fastcgi_index                   index.php;
+#     fastcgi_pass                    127.0.0.1:9000;
+# }
+location ~* \.php$ {
+    proxy_set_header Host $fqdn;
+    proxy_pass http://127.0.0.1:9000;
+}

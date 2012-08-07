@@ -1,0 +1,7 @@
+include snippets/domain_set;
+
+index index.html index.htm;
+autoindex on;
+
+include snippets/nolog_files;
+include snippets/locations_basic;
