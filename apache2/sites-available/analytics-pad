@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+	ServerName analytics-pad.wmflabs.org
+	ServerAdmin dandreescu@wikimedia.org
+	
+	DocumentRoot /home/etherpad-lite/etherpad-lite
+	<Directory /home/etherpad-lite/etherpad-lite>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		Allow from all
+	</Directory>
+	
+	ErrorLog /home/etherpad-lite/logs/error.log
+	# Possible values include: debug, info, notice, warn, error, crit, alert, emerg.
+	LogLevel warn
+	
+	CustomLog /home/etherpad-lite/logs/access.log combined
+	ServerSignature On
+	
+	ProxyRequests On
+	ProxyPass / http://localhost:9001/
+	ProxyPassReverse / http://localhost:9001/
+	ProxyPreserveHost On
+	
+	<Proxy *>
+		Order allow,deny
+		Allow from all
+	</Proxy>
+	
+</VirtualHost>
+

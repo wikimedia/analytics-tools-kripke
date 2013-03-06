@@ -1,37 +1,29 @@
 <VirtualHost *:80>
 	ServerName global-dev.wmflabs.org
-	ServerAdmin root@wikimedia.org
-
+	ServerAdmin dandreescu@wikimedia.org
+	
 	DocumentRoot /srv/global-dev.wmflabs.org/limn/dist
 	<Directory /srv/global-dev.wmflabs.org/limn/dist>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride None
 		Order allow,deny
-		allow from all
+		Allow from all
 	</Directory>
-
-
-	ErrorLog /var/log/apache2/error.log
-	# Possible values include: debug, info, notice, warn, error, crit,
-	# alert, emerg.
-	LogLevel warn
-
-	CustomLog /var/log/apache2/access.log combined
+	
 	ServerSignature On
-
-	ProxyRequests Off
-
-
-        <Proxy *>
-                Order allow,deny
-                Allow from all
-        </Proxy>
-
-	RewriteEngine On
-	RewriteLog /var/log/apache2/rewrite.log
-	RewriteLogLevel 9
-	RewriteCond /srv/global-dev.wmflabs.org/limn/dist/%{REQUEST_FILENAME} !-s
-	RewriteRule "^(.*)" "http://localhost:8085$1" [P]
+	CustomLog /var/log/apache2/limn-access.log combined
+	ErrorLog /var/log/apache2/limn-error.log
+	LogLevel info
+	
+	ProxyRequests On
+	ProxyPreserveHost On
+	ProxyPass / http://localhost:8085/
+	ProxyPassReverse / http://localhost:8085/
+	
+	<Proxy *>
+		Order allow,deny
+		Allow from all
+	</Proxy>
 	
 </VirtualHost>
 

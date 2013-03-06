@@ -1,9 +1,9 @@
 <VirtualHost *:80>
-	ServerName dev-reportcard.wmflabs.org
+	ServerName mobile-reportcard-dev.wmflabs.org
 	ServerAdmin dandreescu@wikimedia.org
 	
-	DocumentRoot /srv/dev-reportcard.wmflabs.org/limn/dist
-	<Directory /srv/dev-reportcard.wmflabs.org/limn/dist>
+	DocumentRoot /srv/mobile-reportcard-dev.wmflabs.org/limn/dist
+	<Directory /srv/mobile-reportcard-dev.wmflabs.org/limn/dist>
 		Options Indexes FollowSymLinks MultiViews
 		AllowOverride None
 		Order allow,deny
@@ -17,8 +17,8 @@
 	
 	ProxyRequests On
 	ProxyPreserveHost On
-	ProxyPass / http://localhost:8086/ 
-	ProxyPassReverse / http://localhost:8086/
+	ProxyPass / http://localhost:8090/
+	ProxyPassReverse / http://localhost:8090/
 	
 	<Proxy *>
 		Order allow,deny
